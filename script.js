@@ -19,7 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const taskInput = document.createElement('input');
   taskInput.type = 'text';
   taskInput.placeholder = 'Название задачи';
-  
+
+  const dateLabel = document.createElement('label');
+  dateLabel.textContent = 'Дата выполнения:';
+  dateLabel.htmlFor = 'taskDate';
+
+  const taskDate = document.createElement('input');
+  taskDate.type = 'date';
+  taskDate.id = 'taskDate';
+
+  taskInputDiv.append(dateLabel, taskDate);
   const taskDate = document.createElement('input');
   taskDate.type = 'date';
   
