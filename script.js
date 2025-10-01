@@ -28,14 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
   taskDate.type = 'date';
   taskDate.id = 'taskDate';
 
-  taskInputDiv.append(dateLabel, taskDate);
+
 
   
   const addButton = document.createElement('button');
   addButton.textContent = 'Добавить';
   
-  taskInputDiv.append(taskInput, taskDate, addButton);
+
+  taskInputDiv.append(taskInput, dateLabel, taskDate, addButton);
   container.appendChild(taskInputDiv);
+
 
   const controlsDiv = document.createElement('div');
   controlsDiv.className = 'task-controls';
