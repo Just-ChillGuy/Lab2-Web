@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   taskDate.id = 'taskDate';
 
   taskInputDiv.append(dateLabel, taskDate);
-  const taskDate = document.createElement('input');
-  taskDate.type = 'date';
+
   
   const addButton = document.createElement('button');
   addButton.textContent = 'Добавить';
