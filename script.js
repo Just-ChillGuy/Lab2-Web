@@ -16,16 +16,13 @@ function init() {
   attachHandlers();
 }
 
-/* ---------- UI build ---------- */
 let refs = {};
 
 function buildUI() {
-  // root wrapper
   const app = document.createElement('main');
   app.className = 'wrap';
   document.body.appendChild(app);
 
-  // header
   const hdr = document.createElement('header');
   hdr.className = 'hdr';
   const h = document.createElement('h1');
@@ -33,7 +30,6 @@ function buildUI() {
   hdr.appendChild(h);
   app.appendChild(hdr);
 
-  // form area
   const form = document.createElement('form');
   form.className = 'f';
   form.setAttribute('aria-label', 'Добавить задачу');
@@ -56,7 +52,6 @@ function buildUI() {
   form.append(txt, date, add);
   app.appendChild(form);
 
-  // controls
   const ctrl = document.createElement('section');
   ctrl.className = 'ctrl';
 
@@ -82,19 +77,16 @@ function buildUI() {
   ctrl.append(search, sel, sort);
   app.appendChild(ctrl);
 
-  // list
   const ul = document.createElement('ul');
   ul.className = 'lst';
   ul.id = 'todoList';
   app.appendChild(ul);
 
-  // store refs
   refs = {
     form, txt, date, add, search, sel, sort, ul
   };
 }
 
-/* ---------- Events ---------- */
 function attachHandlers() {
   refs.form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -115,11 +107,9 @@ function attachHandlers() {
     sortItems();
   });
 
-  // Allow dropping between items on the list container
   refs.ul.addEventListener('dragover', (e) => e.preventDefault());
 }
 
-/* ---------- CRUD + storage ---------- */
 function createItem() {
   const text = refs.txt.value.trim();
   const dateVal = refs.date.value || '';
@@ -182,7 +172,6 @@ function loadFromStorage() {
   }
 }
 
-/* ---------- Sort / filter / search ---------- */
 function sortItems() {
   items.sort((a,b) => {
     const ta = a.d ? new Date(a.d).getTime() : Infinity;
@@ -204,9 +193,7 @@ function applyFilters(list) {
   });
 }
 
-/* ---------- Render ---------- */
 function renderList() {
-  // clear
   while (refs.ul.firstChild) refs.ul.removeChild(refs.ul.firstChild);
 
   const visible = applyFilters(items);
@@ -216,7 +203,6 @@ function renderList() {
   });
 }
 
-/* ---------- Item node + drag handlers ---------- */
 function makeItemNode(it) {
   const li = document.createElement('li');
   li.className = 'item';
@@ -255,7 +241,6 @@ function makeItemNode(it) {
 
   li.append(cb, span, tm, edit, del);
 
-  // drag handlers
   li.addEventListener('dragstart', (e) => {
     e.dataTransfer.setData('text/plain', String(it.id));
     li.classList.add('dragging');
